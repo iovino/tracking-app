@@ -42,7 +42,8 @@
 
 <footer class="footer">
   <div class="container">
-    <p class="text-muted">&copy; Ken Iovino 2016 - Build version <%= File.read(Rails.root.join('VERSION')) %></p>
+    <p class="text-muted">
+      <%= link_to 'Report a Bug', 'https://github.com/iovino/tracking-app/issues' %> - Build version <%= File.read(Rails.root.join('VERSION')) %></p>
   </div>
 </footer>
 
