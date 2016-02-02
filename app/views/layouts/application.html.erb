@@ -43,7 +43,9 @@
 <footer class="footer">
   <div class="container">
     <p class="text-muted">
-      <%= link_to 'Report a Bug', 'https://github.com/iovino/tracking-app/issues' %> - Build version <%= File.read(Rails.root.join('VERSION')) %></p>
+      <div class="footer--dateline">The last scan was performed <%= time_ago_in_words(last_scan_time.in_time_zone('Eastern Time (US & Canada)')) %> ago</div>
+      <div class="footer--version"><%= link_to 'Report a Bug', 'https://github.com/iovino/tracking-app/issues' %> - Build version <%= File.read(Rails.root.join('VERSION')) %></div>
+    </p>
   </div>
 </footer>
 
