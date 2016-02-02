@@ -18,6 +18,6 @@
 # end
 
 # Learn more: http://github.com/javan/whenever
-every 1.minute do
+every 6.hours do
   rake "spider:crawl_all"
 end
