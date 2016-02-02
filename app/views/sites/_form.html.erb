@@ -1,0 +1,60 @@
+<%= form_for(@site) do |f| %>
+  <% if @site.errors.any? %>
+
+    <div class="alert alert-danger" role="alert">
+      <h3><%= pluralize(@site.errors.count, "error") %> prohibited this site from being saved:</h3>
+      <ul>
+      <% @site.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <div class="field-title">Site Name</div>
+    <div class="field-summary">Enter a name for this site. Example: Twitter, Inc</div>
+    <%= f.text_field :name, :class => 'form-control', :placeholder => 'Site name' %>
+  </div>
+
+  <div class="field">
+    <div class="field-title">Homepage URL</div>
+    <div class="field-summary">Enter the homepage’s full url for this site. Example: htttp://www.twitter.com</div>
+    <%= f.text_field :homepage, :class => 'form-control', :placeholder => 'Homepage' %>
+  </div>
+  <div class="field">
+    <div class="field-title">UA-Codes</div>
+    <div class="field-summary">Enter all UA-Codes that should appear on this site. (separate each code with a comma)</div>
+    <%= f.text_field :ua_codes, :class => 'form-control', :placeholder => 'UA Codes' %>
+  </div>
+
+  <div class="field">
+    <div class="field-title">Active Status</div>
+    <div class="field-summary">Select whether or not you want the site to be enabled</div>
+    <%= f.select_tag 'site[active]', options_for_select([['Enabled', true], ['Disabled', false]], @site.active), :class => 'form-control'%>
+  </div>
+
+  <h3>Prioritize URLs</h3>
+
+  <% if @site.site_urls %>
+      <% @site.site_urls.each do |site_url| %>
+          <div class="field">
+            <div class="input-group">
+              <input class="form-control" type="text" value="<%= site_url.url %>" name="prioritize_urls[]" /><span class="input-group-btn"><a class="btn btn-default remove_prioritize_url"><i class="fa fa-trash"></i></a></span>
+            </div>
+          </div>
+      <% end %>
+  <% end %>
+
+  <div class="prioritize_urls"></div>
+
+  <a href="#" class="add_prioritize_url btn btn-default"><i class="fa fa-plus-circle"></i> Add Prioritize Url</a>
+  <div class="clearfix"></div>
+
+  <div class="form-actions">
+    <%= f.submit :class => 'btn btn-success' %>
+    <%= link_to '<i class="fa fa-chevron-circle-left"></i> Go Back'.html_safe, sites_path, :class => 'btn btn-primary' %>
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+  </div>
+
+<% end %>

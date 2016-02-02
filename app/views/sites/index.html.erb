@@ -1,0 +1,82 @@
+<% if notice %>
+  <div class="alert alert-success" role="alert"><%= notice %></div>
+<% end %>
+
+<% if @sites_without_tracking.empty? && @sites_with_tracking.empty? && @sites_pending_scan.empty? && @sites_not_active.empty? %>
+    <div class="alert alert-info" role="alert">
+      <i class="fa fa-info-circle"></i> No sites found ☹ <%= link_to 'Click here', new_site_path %> to create your first site.
+    </div>
+<% end %>
+
+<% if @sites_without_tracking.any? %>
+<div class="sites-table">
+  <h2 class="sites-table__title">Dat Don’t Make No Cent</h2>
+  <table class="sites-table__data">
+    <thead>
+    <tr>
+      <th colspan="3">The following sites are having tracking issues and need your attention.</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @sites_without_tracking.each_with_index do |sites_without_tracking, index| %>
+        <%= render 'sites/tables', :site => sites_without_tracking, :iteration => index + 1, :hide_status => false  %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+
+<% if @sites_pending_scan.any? %>
+<div class="sites-table">
+  <h2 class="sites-table__title">Scans Pending</h2>
+  <table class="sites-table__data">
+    <thead>
+    <tr>
+      <th colspan="3">The following sites have not been scanned yet and are scheduled to be scanned tomorrow morning.</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @sites_pending_scan.each_with_index do | sites_pending_scan, index| %>
+        <%= render 'sites/tables', :site => sites_pending_scan, :iteration => index + 1, :hide_status => false %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+
+<% if @sites_with_tracking.any? %>
+<div class="sites-table">
+      <h2 class="sites-table__title">Looks Tight</h2>
+      <table class="sites-table__data">
+        <thead>
+        <tr>
+          <th colspan="3">The following sites are reporting to have the correct tracking codes.</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% @sites_with_tracking.each_with_index do | sites_with_tracking, index| %>
+            <%= render 'sites/tables', :site => sites_with_tracking, :iteration => index + 1, :hide_status => false  %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+<% end %>
+
+<% if @sites_not_active.any? %>
+<div class="sites-table">
+  <h2 class="sites-table__title">Inactive Sites</h2>
+  <table class="sites-table__data">
+    <thead>
+    <tr>
+      <th colspan="3">The following sites have been disabled and will not be scanned.</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @sites_not_active.each_with_index do | sites_not_active, index| %>
+        <%= render 'sites/tables', :site => sites_not_active, :iteration => index + 1, :hide_status => true  %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+

@@ -1,0 +1,25 @@
+<tbody>
+<tr>
+  <td class="sites-table__row-number"><%= iteration %>.</td>
+  <td class="sites-table__row-title">
+
+    <%= link_to site.name, edit_site_path(site) %>
+
+    <% if hide_status == false %>
+      <div class="sites-table__row-title--status">
+        <% if site.status == 'missing' %>
+            <span class="label label-danger">Tracking Not Found</span>
+        <% end %>
+
+        <% if site.status == 'found' %>
+            <span class="label label-success">Tracking Found</span>
+        <% end %>
+
+        <% if site.status == 'pending' %>
+            <span class="label label-warning">Scan Pending</span>
+        <% end %>
+      </div>
+  <% end %>
+  </td>
+</tr>
+</tbody>

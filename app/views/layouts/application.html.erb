@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tracking App</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <%= link_to "Google Analytics Tracker", root_path, :class => 'navbar-brand' %>
+    </div>
+
+    <% if user_signed_in? %>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <div class="dropdown" id="header-dropdown">
+            <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <%= current_user.email %> <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><%= link_to 'Add New Site', new_site_path %></li>
+              <li><%= link_to "Account Settings", edit_user_registration_path %></li>
+              <li role="separator" class="divider"></li>
+              <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <% end %>
+  </div>
+</nav>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <p class="text-muted">&copy; Ken Iovino 2016 - Build version <%= File.read(Rails.root.join('VERSION')) %></p>
+  </div>
+</footer>
+
+</body>
+</html>

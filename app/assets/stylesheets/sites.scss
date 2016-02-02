@@ -1,0 +1,50 @@
+$table-border : #dddddd;
+$font-color   : #656c72;
+
+.sites-table {
+  margin-bottom : 20px;
+
+  .sites-table__title {
+    color       : #656c72;
+    font-size   : 16pt;
+    font-weight : bold;
+  }
+
+  .sites-table__data {
+    width         : 100%;
+    max-width     : 100%;
+    border        : 1px solid $table-border;
+    background    : #fff;
+
+    th {
+      padding     : 5px 10px;
+      border-top  : 5px solid $table-border;
+      font-weight : normal;
+      font-size   : 10pt;
+      color       : #777;
+    }
+
+    td {
+      padding    : 5px 10px;
+      border     : 1px solid $table-border;
+    }
+
+    .sites-table__row-title {
+      width       : 100%;
+      font-weight : bold;
+
+      .sites-table__row-title--status {
+        float : right;
+      }
+    }
+  }
+}
+
+.add_prioritize_url {
+  float: right;
+}
+
+.error-logs {
+  width: 800px;
+  margin: 0 auto;
+}

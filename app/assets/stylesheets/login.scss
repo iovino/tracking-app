@@ -1,0 +1,46 @@
+$font-color: #656c72;
+
+.new_user, .edit_user {
+  padding               : 20px;
+  max-width             : 400px;
+  margin                : 0 auto 20px;
+  background-color      : #fff;
+  border                : 1px solid #e5e5e5;
+  border-radius         : 5px;
+  -webkit-border-radius : 5px;
+  -moz-border-radius    : 5px;
+  -webkit-box-shadow    : 0 1px 2px rgba(0,0,0,.05);
+  -moz-box-shadow       : 0 1px 2px rgba(0,0,0,.05);
+  box-shadow            : 0 1px 2px rgba(0,0,0,.05);
+}
+
+.edit_user {
+
+  .field {
+    color: $font-color;
+
+    .field-title {
+      font-weight: bold;
+    }
+
+    .field-summary {
+      font-size   : 10pt;
+      color       : #777;
+    }
+
+    .form-control {
+      width: 100%;
+      margin: 5px 0;
+    }
+  }
+
+  .alert-danger {
+    h3 {
+      font-size: 14pt;
+      font-weight: bold;
+      padding: 0 0 10px 0;
+      margin: 0;
+    }
+
+  }
+}

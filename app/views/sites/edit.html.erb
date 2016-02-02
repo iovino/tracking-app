@@ -1,0 +1,37 @@
+<div class="form-panel">
+  <h2>Edit Site</h2>
+  <%= render 'form' %>
+
+  <div style="text-align: right">
+    <%= link_to '<i class="fa fa-trash"></i> Delete Site'.html_safe, @site, :method => :delete, :data => {:confirm => "Are you sure you want to delete this site?"}, :class => 'btn btn-danger' %>
+  </div>
+
+</div>
+
+<% if @errors.empty? == false %>
+
+<div class="panel panel-default error-logs">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Error Log</div>
+
+  <!-- Table -->
+  <table class="table">
+    <thead>
+      <th>Message</th>
+      <th>When</th>
+    </thead>
+    <tbody>
+      <% @errors.each do |error| %>
+          <tr>
+            <td><%= error.message %></td>
+            <td>
+              <span><%= time_ago_in_words(error.created_at.in_time_zone('Eastern Time (US & Canada)')) %> ago</span>
+            </td>
+          </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+<% end %>
+
+
