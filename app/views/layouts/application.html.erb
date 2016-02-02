@@ -44,7 +44,11 @@
   <div class="container">
     <p class="text-muted">
       <div class="footer--dateline">
-
+        <% if last_scan_time %>
+            The last scan was performed <%= time_ago_in_words(last_scan_time.in_time_zone('Eastern Time (US & Canada)')) %> ago
+        <% else %>
+            There has not been a scan performed yet
+        <% end %>
       </div>
       <div class="footer--version"><%= link_to 'Report a Bug', 'https://github.com/iovino/tracking-app/issues' %> - Build version <%= File.read(Rails.root.join('VERSION')) %></div>
     </p>

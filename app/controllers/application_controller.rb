@@ -7,7 +7,12 @@ class ApplicationController < ActionController::Base
 
   def last_scan_time
     lastest_scan = Site.select(:last_checked).where(:active => true).order(last_checked: :desc).first
-    lastest_scan.last_checked
+
+    if lastest_scan.nil?
+      false
+    else
+      lastest_scan.last_checked
+    end
   end
 
 
