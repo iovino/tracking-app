@@ -9,8 +9,8 @@ namespace :spider do
     sites.each do |site|
       spider = Spider.new(site)
       spider.crawl_homepage
-      spider.crawl_links
-      spider.crawl_prioritize_urls
+      #spider.crawl_links
+      #spider.crawl_prioritize_urls
 
       if spider.errors.any?
         spider.errors.each do |error|
@@ -160,8 +160,8 @@ class Spider
 
       # check if UA codes found match what's saved in the database
       @site.ua_codes.split(',').each do |ua_code|
-        if uacodes.include? ua_code == false
-          @errors.push("Failed to match UA code on: #{link}")
+        if (uacodes.include? ua_code) == false
+          @errors.push("Mismatched UA Codes on: #{link}")
         end
       end
 
@@ -190,8 +190,9 @@ class Spider
 
     # check if UA codes found match what's saved in the database
     @site.ua_codes.split(',').each do |ua_code|
-      if uacodes.include? ua_code == false
-        @errors.push("Failed to find UA codes on: #{@site.homepage}")
+
+      if (uacodes.include? ua_code) == false
+        @errors.push("Mismatched UA Codes on: #{@site.homepage}")
       end
     end
 
@@ -224,8 +225,8 @@ class Spider
 
       # check if UA codes found match what's saved in the database
       @site.ua_codes.split(',').each do |ua_code|
-        if uacodes.include? ua_code == false
-          @errors.push("Failed to find UA codes on: #{site_url.url}")
+        if (uacodes.include? ua_code) == false
+          @errors.push("Mismatched UA Codes on: #{site_url.url}")
         end
       end
     end
