@@ -13,7 +13,7 @@ gem 'twitter-bootstrap-rails', '~> 3.2', '>= 3.2.2'
 gem 'whenever', :require => false
 gem 'font-awesome-rails'
 gem 'devise'
-gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt', '~> 3.1', '>= 3.1.5'
 
 group :development, :test do
   gem 'byebug'
