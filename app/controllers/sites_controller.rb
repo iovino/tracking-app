@@ -89,7 +89,7 @@ class SitesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_site
-      @site = Site.where(:id => params[:id], :user_id => current_user.id).first
+      @site = Site.where(:id => params[:id]).first
 
       if @site.nil?
         render file: 'public/404', status: 404, formats: [:html]
