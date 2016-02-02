@@ -31,7 +31,7 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 
 set :ssh_options, {
     keys: %w(/Users/Ken/.pem/TrackingApp.pem),
-    forward_agent: false,
+    forward_agent: true,
     user: 'ubuntu'
 }
 
