@@ -5,10 +5,10 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites_without_tracking = Site.where(:active => true, :status => 0)
-    @sites_with_tracking    = Site.where(:active => true, :status => 1)
-    @sites_pending_scan     = Site.where(:active => true, :status => 2)
-    @sites_not_active       = Site.where(:active => false)
+    @sites_without_tracking = Site.where(:active => true, :status => 0, :user_id => current_user.id)
+    @sites_with_tracking    = Site.where(:active => true, :status => 1, :user_id => current_user.id)
+    @sites_pending_scan     = Site.where(:active => true, :status => 2, :user_id => current_user.id)
+    @sites_not_active       = Site.where(:active => false, :user_id => current_user.id)
   end
 
   # GET /sites/1
@@ -89,7 +89,11 @@ class SitesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_site
-      @site = Site.find(params[:id])
+      @site = Site.where(:id => params[:id], :user_id => current_user.id).first
+
+      if @site.nil?
+        render file: 'public/404', status: 404, formats: [:html]
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
