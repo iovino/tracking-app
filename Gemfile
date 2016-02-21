@@ -14,7 +14,7 @@ gem 'whenever', :require => false
 gem 'font-awesome-rails'
 gem 'devise'
 gem 'bcrypt', github: 'codahale/bcrypt-ruby'
-
+gem 'open_uri_redirections'
 
 group :development, :test do
   gem 'byebug'
