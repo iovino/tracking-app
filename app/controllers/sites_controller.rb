@@ -5,10 +5,10 @@ class SitesController < ApplicationController
   # GET /sites
   # GET /sites.json
   def index
-    @sites_without_tracking = Site.where(:active => true, :status => 0, :user_id => current_user.id)
-    @sites_with_tracking    = Site.where(:active => true, :status => 1, :user_id => current_user.id)
-    @sites_pending_scan     = Site.where(:active => true, :status => 2, :user_id => current_user.id)
-    @sites_not_active       = Site.where(:active => false, :user_id => current_user.id)
+    @sites_without_tracking = Site.where(:active => true, :status => 0)
+    @sites_with_tracking    = Site.where(:active => true, :status => 1)
+    @sites_pending_scan     = Site.where(:active => true, :status => 2)
+    @sites_not_active       = Site.where(:active => false)
   end
 
   # GET /sites/1
