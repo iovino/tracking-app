@@ -98,10 +98,21 @@ class Spider
   # Returns an array of Google UA-Codes if any are found
   #
   def get_uacodes(html)
+
+    codes = []
+
     html = html.to_s
     html = html.gsub(/<!--[\s\S]*?-->/, '')
 
-    html.scan(/UA-[0-9]{5,}-[0-9]{1,}/)
+    html.scan(/UA-[0-9]{5,}-[0-9]{1,}/).each do |ua_code|
+      codes.push(ua_code)
+    end
+
+    html.scan(/GTM-[0-9A-Z]{5,}/).each do |gtm_code|
+      codes.push(gtm_code)
+    end
+
+    return codes.uniq
   end
 
   #
